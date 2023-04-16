@@ -1,11 +1,12 @@
 {% extends 'base.html' %} {% load static %} {% load tags %} {% block content %}
 
-<div class="custom-border-bottom py-3">
+<div class="bg-light py-3">
   <div class="container">
     <div class="row">
       <div class="col-md-12 mb-0">
-        <a href="/">Home</a> <span class="mx-2 mb-0">/</span>
-        <strong class="text-black">Profile</strong>
+        <a href="/" style="color: #ee4e34;">Басты бет</a> 
+        <span class="mx-2 mb-0">/</span> 
+        <strong class="text-black">Профиль</strong>
       </div>
     </div>
   </div>
@@ -15,7 +16,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h2 class="h3 mb-3 text-black">User Info</h2>
+        <h2 class="h3 mb-3 text-black">Профиль</h2>
       </div>
 
       <div class="col-md-7">
@@ -23,7 +24,7 @@
           <div class="form-group row">
             <div class="col-md-12" style="text-align: center">
               <img
-                src="{% static 'images/user_icon.png' %}"
+                src="{% static 'images/user_icon.svg' %}"
                 height="150"
                 style="padding-bottom: 15px"
               />
@@ -43,7 +44,7 @@
             </div>
 
             <div class="col-md-6" style="text-align: center">
-              <h6 class="text-black">Phone no :</h6>
+              <h6 class="text-black">Телефон:</h6>
               <h6 class="text-grey">{{ user.phone }}</h6>
             </div>
           </div>
@@ -51,18 +52,18 @@
           <div class="p-3 mb-3" style="text-align: center">
             <div class="form-group row ">
               <div class="col-md-6">
-                <h6 class="text-black">Deposited amount :</h6>
-                <h6 class="text-grey">{{ user.deposite }}</h6>
+                <h6 class="text-black">Депозит соммасы:</h6>
+                <h6 class="text-grey">{{ user.deposite }} &#8376;</h6>
               </div>
 
               <div class="col-lg-5" style="padding-left:15%">
                 <input
                   type="submit"
-                  class="btn btn-primary btn-lg btn-block"
+                  class="primary-button-input"
                   data-toggle="collapse"
                   data-target="#update_deposite"
                   onclick="#update_deposite"
-                  value="Add balance"
+                  value="Толықтыру"
                 />
               </div>
             </div>
@@ -73,7 +74,7 @@
                   class="form-control"
                   id="deposite_amt"
                   name="deposite_amt"
-                  placeholder="Enter amount to add"
+                  placeholder="Сомманы енгізіңіз"
                 />
               </div>
 
@@ -103,9 +104,9 @@
                     <button
                       type="button"
                       onclick="update()"
-                      class="btn btn-primary btn-lg btn-block"
+                      class="primary-button-input"
                     >
-                      pay
+                      Төлеу
                     </button>
                   </div>
                 </div>
@@ -116,9 +117,9 @@
       </div>
       <div class="col-md-5 ml-auto">
         {% assign 1 as c %} {% for address in addresses %}
-        <div class="p-4 border mb-3" style="line-height: 2.5vh">
-          <span class="d-block text-primary h6 text-uppercase"
-            >Address {{ c }}</span
+        <div class="p-4 border mb-3" style="line-height: 2.5vh;">
+          <span style="color: #ee4e34;" class="d-block h6 text-uppercase"
+            >Мекен-жай {{ c }}</span
           >
           <div class="container">
             <p class="mb-3" style="text-transform: capitalize">
@@ -127,7 +128,7 @@
               {{ address.add_ln2 }}<br />
               {{ address.city }}<br />
               {{ address.pincode }}<br />
-              Ph no. {{ address.phone }}
+              Телефон: {{ address.phone }}
             </p>
           </div>
         </div>
@@ -137,7 +138,7 @@
     <br /><br />
     <div class="row">
       <div class="col-md-12">
-        <h2 class="h3 mb-3 text-black">Your Orders</h2>
+        <h2 class="h3 mb-3 text-black">Менің тапсырыстарым</h2>
       </div>
 
       <div class="col-md-7">
@@ -145,12 +146,12 @@
           {% for id, items in orders.items %}
           <div class="form-group row">
             <div class="col-md-12">
-              <h2 class="h5 mb-3 text-black">Order ID : {{ id }}</h2>
+              <h2 class="h5 mb-3 text-black">Тапсырыс №: {{ id }}</h2>
               <div class="p-3 p-lg-5 border" style='padding-bottom:0px;'>
                 <table class="table site-block-order-table mb-5">
                   <thead>
-                    <th>Product</th>
-                    <th>Total</th>
+                    <th>Кітап</th>
+                    <th>Барлығы</th>
                   </thead>
                   <tbody>
                     {% for item in items %}
@@ -159,7 +160,7 @@
                         {{ item.book.title }}<strong class="mx-2">x</strong>
                         {{ item.quantity }}
                       </td>
-                      <td>{{ item.total }}</td>
+                      <td>{{ item.total }} &#8376;</td>
                     </tr>
                     {% endfor %}
 
@@ -168,25 +169,25 @@
                         {% with id|rent as rent %}
                         {% if rent.is_received and not rent.return_requested %}
                         <button
-                          class="btn btn-primary btn-sm btn-block"
+                          class="primary-button-block"
                           id="is_delivered"
-                          style="max-width: 150px; max-height:30px; text-transform:capitalize"
+                          style="max-width: 150px; text-transform:capitalize"
                           onclick="window.location = '/update_status/req/{{rent.id}}'"
                         >
-                          return
+                          Қайтару
                         </button>
                         {% elif rent.is_returned %}
-                        Returned
+                        Қайтарылды
                         {% elif rent.return_requested%}
-                        Return requested
+                        Қайтарылған тапсырыс
                         {% else %}
-                        Your order is on the way
+                        Сіздің тапсырысыңыз жолда
                         {% endif %}
                         
                       </td>
                       <td>
                         {% if rent.return_requested %}
-                        <strong>Rent:</strong> Rs. {{rent.cost}}*
+                        <strong>Жалдау соммасы:</strong> {{rent.cost}} &#8376;*
                         {% else %}-
                         {% endif %}
                       </td>
@@ -195,7 +196,7 @@
                   </tbody>
                 </table>
                 {% if rent.return_requested %}
-                <p>*including delivery charges Rs. 50 </p>
+                <p>*Жеткізу құны қосымша 50 &#8376; </p>
                 {% endif %}
               </div>
             </div>

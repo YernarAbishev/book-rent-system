@@ -1,11 +1,12 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<div class="custom-border-bottom py-3">
+<div class="bg-light py-3">
   <div class="container">
     <div class="row">
       <div class="col-md-12 mb-0">
-        <a href="/">Home</a> <span class="mx-2 mb-0">/</span>
-        <strong class="text-black">Login</strong>
+        <a href="/" style="color: #ee4e34;">Басты бет</a> 
+        <span class="mx-2 mb-0">/</span> 
+        <strong class="text-black">Кіру</strong>
       </div>
     </div>
   </div>
@@ -33,11 +34,11 @@
               </div>
 
               <div class="col-md-12">
-                <h2 class="h3 mb-3 text-black">Create account</h2>
+                <h2 class="h3 mb-3 text-black">Тіркелу</h2>
               </div>
 
               <div class="col-md-6">
-                <label for="c_fname" class="text-black">First Name</label>
+                <label for="c_fname" class="text-black">Аты</label>
                 <input
                   type="text"
                   class="form-control"
@@ -47,7 +48,7 @@
               </div>
 
               <div class="col-md-6">
-                <label for="c_lname" class="text-black">Last Name </label>
+                <label for="c_lname" class="text-black">Тегі </label>
                 <input
                   type="text"
                   class="form-control"
@@ -71,7 +72,7 @@
 
               <div class="col-md-12">
                 <label for="c_phone" class="text-black"
-                  >Phone <span class="text-danger">*</span></label
+                  >Телефон <span class="text-danger">*</span></label
                 >
                 <input
                   type="text"
@@ -83,7 +84,7 @@
               </div>
               
               <div class="col-md-12">
-                <label for="c_password1" class="text-black">Password </label>
+                <label for="c_password1" class="text-black">Құпия сөз </label>
                 <input
                   type="Password"
                   class="form-control"
@@ -94,7 +95,7 @@
 
               <div class="col-md-12">
                 <label for="c_password1" class="text-black"
-                  >Confirm Password
+                  >Құпия сөзді растау
                 </label>
                 <input
                   type="Password"
@@ -109,8 +110,8 @@
               <div class="col-lg-12">
                 <input
                   type="submit"
-                  class="btn btn-primary btn-lg btn-block"
-                  value="Create account"
+                  class="primary-button-block"
+                  value="Тіркелу"
                 />
               </div>
             </div>
@@ -131,7 +132,7 @@
 				{% endfor %}
               </div>
               <div class="col-md-6">
-                <h2 class="h3 mb-3 text-black">Login</h2>
+                <h2 class="h3 mb-3 text-black">Кіру</h2>
               </div>
             </div>
             <div class="form-group row">
@@ -148,7 +149,7 @@
             </div>
             <div class="form-group row">
               <div class="col-md-12">
-                <label for="c_subject" class="text-black">Password </label>
+                <label for="c_subject" class="text-black">Құпия сөз </label>
                 <input
                   type="Password"
                   class="form-control"
@@ -164,8 +165,8 @@
               <div class="col-lg-12">
                 <input
                   type="submit"
-                  class="btn btn-primary btn-lg btn-block"
-                  value="Login"
+                  class="primary-button-block"
+                  value="Кіру"
                 />
               </div>
             </div>

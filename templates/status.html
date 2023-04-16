@@ -7,8 +7,8 @@
       <div class="col-md-4" style="margin-left: 70%;">
       <form action="search_order">
         <div class="form-group">
-          <input type="text" class="form-control py-4" name="order_id" id="order_id" placeholder="Enter order id">
-          <input type="submit" class="btn btn-sm btn-primary" value="Search">
+          <input type="text" class="form-control py-4" name="order_id" id="order_id" placeholder="Тапсырыс № енгізіңіз">
+          <input type="submit" class="btn btn-sm btn-success" value="Іздеу">
         </div>
       </form>
     </div>
@@ -21,13 +21,13 @@
       <table class="table table-bordered" style="min-width: 20%;">
         <thead>
           <tr>
-            <th class="product">Order id</th>
-            <th class="product">Customer</th>
-            <th class="product">Calculated_cost</th>
-            <th class="product">Is_delivered</th>
-            <th class="product">Delivered date</th>
-            <th class="product">Is_returned</th>
-            <th class="product">Returned date</th>
+            <th class="product">Тапсырыс №</th>
+            <th class="product">Тапсырыс беруші</th>
+            <th class="product">Барлығы</th>
+            <th class="product">Курьер жеткізді</th>
+            <th class="product">Жеткізу күні</th>
+            <th class="product">Қайтарылды</th>
+            <th class="product">Қайтару күні</th>
           </tr>
         </thead>
         <tbody>
@@ -52,7 +52,7 @@
               >
                 confirm delivery
               </button>
-              {% else %} Delivered {% endif %}
+              {% else %} <span class="bg-success text-white p-2">Жеткізілді</span> {% endif %}
             </td>
             <td class="product-name">
               <h2 class="h6 text-black">{{ rent.received_date }}</h2>
@@ -60,18 +60,24 @@
             <td>
               {% if not rent.is_returned %}
               <button
-                class="btn btn-primary btn-sm btn-block"
+                class="primary-button-block"
                 id="is_returned"
-                style="max-width: 150px; max-height:30px; text-transform:capitalize"
+                style="text-transform:capitalize"
                 onclick="window.location = '/update_status/ret/{{ rent.id }}'"
               >
-                Confirm return
+                Растау
               </button>
-              {% else %} Returned {% endif %}
+              {% else %} <span class="bg-success text-white p-2">Қайтарылды</span> {% endif %}
             </td>
+            {% if rent.return_date %}
             <td class="product-name">
               <h2 class="h6 text-black">{{ rent.return_date }}</h2>
             </td>
+            {% else %}
+            <td class="product-name">
+              <span class="bg-danger p-2 text-white">Қайтарылмады</span>
+            </td>
+            {% endif %}
           </tr>
 
           {% endfor %}

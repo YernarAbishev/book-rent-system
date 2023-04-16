@@ -4,21 +4,28 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
 class Book(models.Model):
-    title = models.CharField(max_length=50)
-    author = models.CharField(max_length=50)
-    description = models.CharField(max_length=100, blank=True, null=True)
-    category = models.CharField(max_length=15, blank=True, null=True)
-    price = models.IntegerField()
-    quantity = models.IntegerField()
-    img = models.ImageField(upload_to='books', null=True)
+    title = models.CharField("Кітап атауы", max_length=255)
+    author = models.CharField("Автор", max_length=50)
+    description = models.TextField("Сипаттамасы", blank=True, null=True)
+    category = models.CharField("Жанр", max_length=255, blank=True, null=True)
+    price = models.IntegerField("Бағасы")
+    quantity = models.IntegerField("Дана")
+    img = models.ImageField("Суреті", upload_to='books', null=True)
+
+    def __str__(self):
+        return f"{self.title}"
+
+    class Meta:
+        verbose_name = "Кітап"
+        verbose_name_plural = "Кітаптар"
 
 
 class MyCustomerManager(BaseUserManager):
     def create_user(self, email, username, first_name, last_name, password=None, phone='0', address=None):
         if not email:
-            raise ValueError('Users must have an email address')
+            raise ValueError('Пайдаланушының электрондық поштасы болуы керек')
         if not username:
-            raise ValueError('Users must have a username')
+            raise ValueError('Пайдаланушылардың логині болуы керек')
 
         user = self.model(
             email=self.normalize_email(email),
@@ -78,6 +85,10 @@ class Customer(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
+    class Meta:
+        verbose_name = "Тапсырыс беруші"
+        verbose_name_plural = "Тапсырыс берушілер"
+
 
 class Address(models.Model):
     first_name = models.CharField(max_length=30, default=None)
@@ -90,9 +101,25 @@ class Address(models.Model):
     customer = models.ForeignKey(
         Customer, on_delete=models.CASCADE, default=None)
 
+    def __str__(self):
+        return f"{self.add_ln1}"
+
+    class Meta:
+        verbose_name = "Мекен-жай"
+        verbose_name_plural = "Мекен-жайлар"
+        
+
 
 class Payment(models.Model):
     amount = models.IntegerField()
     payment_time = models.DateTimeField(auto_now=True, null=True)
     is_succeed = models.BooleanField(default=False)
     is_canceled = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.amount} - {self.payment_time}"
+
+    class Meta:
+        verbose_name = "Төлем"
+        verbose_name_plural = "Төлемдер"
+        

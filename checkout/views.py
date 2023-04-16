@@ -47,13 +47,13 @@ def place(request, order_id):
         address_choice = request.GET['address']
         address_id = request.GET.get('c_address')
     except:
-        messages.error(request, 'Select address to proceed !!',
+        messages.error(request, 'Жалғастыру үшін мекенжайды таңдаңыз. ',
                        extra_tags='address')
         return redirect('/checkout')
 
     if address_choice == '1':
         if address_id == None:
-            messages.error(request, 'Select address to proceed !!',
+            messages.error(request, 'Жалғастыру үшін мекенжайды таңдаңыз.',
                         extra_tags='address')
             return redirect('/checkout')
 
@@ -67,13 +67,13 @@ def place(request, order_id):
 
     if fname==None or lname==None or add_ln1==None or pin==None or phone==None or city==None:
         messages.error(
-            request, 'Must fill the required fields marked as *', extra_tags='field')
+            request, 'Белгіленген (*) міндетті өрістерді толтыру қажет', extra_tags='field')
         return redirect('/checkout')
 
     order = Order.objects.get(id=order_id)
     
     if request.user.deposite < order.total_cost:
-        messages.error(request, 'You should have deposited amount more than order amount in your account to place the order',
+        messages.error(request, 'Тапсырысты рәсімдеу үшін сіздің шотыңызға тапсырыс сомасынан асатын сома енгізілуі керек.',
                         extra_tags='deposite')
         return redirect('/checkout')
 

@@ -28,7 +28,7 @@ def cart(request, book_id):
                                                 'page': 'books', 'item_count': len(cart_items(request))})
 
     else:
-        messages.error(request, 'You need to log in first !!',
+        messages.error(request, 'Жүйеге кіріңіз.',
                        extra_tags='log')
         return render(request, 'login.html', {'page': 'login'})
 

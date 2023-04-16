@@ -6,10 +6,10 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-0">
-            <a href="/">Home</a> 
+            <a href="/" style="color: #ee4e34;">Басты бет</a> 
             <span class="mx-2 mb-0">/</span> 
-            <a href="/cart/0">Cart</a> <span class="mx-2 mb-0">/</span> 
-            <strong class="text-black">Checkout</strong>
+            <a href="/cart/0" style="color: #ee4e34;">Себет</a> <span class="mx-2 mb-0">/</span> 
+            <strong class="text-black">Төлеу</strong>
           </div>
         </div>
       </div>
@@ -21,7 +21,7 @@
         <div class="row">
           
           <div class="col-md-6 mb-5 mb-md-0">
-            <h2 class="h3 mb-3 text-black">Billing Details</h2>
+            <h2 class="h3 mb-3 text-black">Курьермен жеткізу</h2>
             <div class="p-3 p-lg-5 border">
               {% for message in messages %}
               {% if not message.extra_tags == 'deposite' %}
@@ -50,7 +50,7 @@
                 <form action="place/{{order_id}}">
                 <label id="a1" for="c_default_address" class="text-black" onclick="collapse()"
                         role="button">
-                        <input type="radio" value="1" name="address" id="c_default_address"> Use Default Address
+                        <input type="radio" value="1" name="address" id="c_default_address">&nbsp;Еңгізілген мекен-жайды пайдалану
                 </label>
                 
                 
@@ -75,7 +75,7 @@
                                 </p>
                               </div>
                             {% empty %}
-                              <p>No default addresses</p>
+                              <p>Еңгізілген мекен-жай жоқ</p>
                           {% endfor %}
                         {% endwith %}
                         </div>
@@ -91,7 +91,7 @@
                 <label for="c_different_address" class="text-black" 
                         onclick="collapse()"
                         role="button">
-                        <input type="radio" value="2" name="address" id="c_different_address"> Use Different Address
+                        <input type="radio" value="2" name="address" id="c_different_address"> Мекен-жайды еңгізу
                 </label>
                 
                 <div class="collapse" id="different_address">
@@ -99,44 +99,44 @@
 
                     <div class="form-group row">
                       <div class="col-md-6">
-                        <label for="c_fname" class="text-black">First Name <span class="text-danger">*</span></label>
+                        <label for="c_fname" class="text-black">Аты <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="c_fname" name="c_fname">
                       </div>
                       <div class="col-md-6">
-                        <label for="c_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
+                        <label for="c_lname" class="text-black">Тегі <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="c_lname" name="c_lname">
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <div class="col-md-12">
-                        <label for="c_add_ln1" class="text-black">Address </label>
+                        <label for="c_add_ln1" class="text-black">Мекен-жайы </label>
                         <input type="text" class="form-control" id="c_add_ln1" 
-                                name="c_add_ln1" placeholder="Address Line 1 *">
+                                name="c_add_ln1" placeholder="Негізгі мекен-жайы*">
                       </div>
                     </div>
 
                     <div class="form-group">
                       <input type="text" class="form-control" id="c_add_ln2" 
-                                name="c_add_ln2"placeholder="Address Line 2">
+                                name="c_add_ln2"placeholder="Қосымша мекен-жайы">
                     </div>
 
                     <div class="form-group">
                       <input type="text" class="form-control" id="c_city" 
-                                name="c_city" placeholder="City *">
+                                name="c_city" placeholder="Қала *">
                     </div>
 
 
                     <div class="form-group row">
                       <div class="col-md-12">
-                        <label for="c_pin" class="text-black">Pincode <span class="text-danger">*</span></label>
+                        <label for="c_pin" class="text-black">Пошта коды <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="c_pin" name="c_pin">
                       </div>
                     </div>
 
                     <div class="form-group row mb-5">
                       <div class="col-md-12">
-                        <label for="c_phone" class="text-black">Phone <span class="text-danger">*</span></label>
+                        <label for="c_phone" class="text-black">Телефон <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="c_phone" name="c_phone">
                       </div>
                     </div>
@@ -152,24 +152,24 @@
             
             <div class="row mb-5">
               <div class="col-md-12">
-                <h2 class="h3 mb-3 text-black">Your Order</h2>
+                <h2 class="h3 mb-3 text-black">Сіздің тапсырысыңыз</h2>
                 <div class="p-3 p-lg-5 border">
                   <table class="table site-block-order-table mb-5">
                     <thead>
-                      <th>Product</th>
-                      <th>Total</th>
+                      <th>Кітап</th>
+                      <th>Барлығы</th>
                     </thead>
                     <tbody>
                       {% for item in items %}
                       <tr>
                         <td>{{item.book.title}}<strong class="mx-2">x</strong> {{item.quantity}}</td>
-                        <td>{{item.total}}</td> 
+                        <td>{{item.total}} &#8376;</td> 
                       </tr>
                       {% endfor %}
 
                       <tr>
-                        <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                        <td class="text-black font-weight-bold"><strong>{{total}}</strong></td>
+                        <td class="text-black font-weight-bold"><strong>Барлығы</strong></td>
+                        <td class="text-black font-weight-bold"><strong>{{total}} &#8376;</strong></td>
                         
                       </tr>
                       
@@ -186,7 +186,7 @@
                     {% endif %}
                   {% endfor %}
                   <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Place Order</button>
+                    <button type="submit" class="primary-button-block">Тапсырсты орындау</button>
                   </div>
 
                 </div>

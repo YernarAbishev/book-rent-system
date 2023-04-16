@@ -44,11 +44,11 @@ def login(request):
         pas = request.POST.get('c_password')
 
         if not email:
-            messages.error(request, "E-mail required!!", extra_tags='log')
+            messages.error(request, "E-mail қажет", extra_tags='log')
             return redirect('/login')
 
         if not pas:
-            messages.error(request, "Password required!!", extra_tags='log')
+            messages.error(request, "Құпия сөз қажет", extra_tags='log')
             return redirect('/login')
 
         user = auth.authenticate(username=email, password=pas)
@@ -58,7 +58,7 @@ def login(request):
             return redirect('/')
 
         else:
-            messages.error(request, 'Invalid credentials !!', extra_tags='log')
+            messages.error(request, 'Email немесе құпия сөз қате', extra_tags='log')
             return redirect('/login')
 
     return redirect('/')
@@ -74,35 +74,35 @@ def register(request):
     pass2 = request.POST['c_password1']
 
     if not email:
-        messages.error(request, "User must have an E-mail !!")
+        messages.error(request, "Пайдаланушының Email болуы керек")
         return redirect('/login')
 
     if not phone:
-        messages.error(request, "User must have a phone no !!")
+        messages.error(request, "Пайдаланушының телефон нөмірі болуы керек")
         return redirect('/login')
 
     if not pass1:
-        messages.error(request, "User must provide password !!")
+        messages.error(request, "Пайдаланушы құпия сөзі болуы керек")
         return redirect('/login')
 
     if not pass2:
-        messages.error(request, "User must confirm password !!")
+        messages.error(request, "Пайдаланушы құпия сөзді растауы керек")
         return redirect('/login')
 
     if pass1 == pass2:
         if Customer.objects.filter(email=email):
-            messages.error(request, "E-mail already exists !!")
+            messages.error(request, "Бұл Email-ға аккаунт тіркелген")
             return redirect('/login')
 
         else:
             user = Customer.objects.create_user(
                 username=email, password=pass1, email=email, first_name=fname, last_name=lname, phone=phone)
             user.save()
-            messages.info(request, 'User created !!')
+            messages.info(request, 'Сіз жүйеге сәтті тіркелдіңіз')
             return redirect('/login')
 
     else:
-        messages.error(request, 'Password not matching')
+        messages.error(request, 'Құпия сөз сәйкес келмейді')
         return redirect('/login')
 
 
@@ -161,11 +161,11 @@ def staff(request):
         pas = request.POST.get('c_password')
 
         if not email:
-            messages.error(request, "E-mail required!!", extra_tags='log')
+            messages.error(request, "E-mail қажет", extra_tags='log')
             return redirect('/staff_login')
 
         if not pas:
-            messages.error(request, "Password required!!", extra_tags='log')
+            messages.error(request, "Құпия сөз қажет", extra_tags='log')
             return redirect('/staff_login')
 
         user = auth.authenticate(username=email, password=pas)
@@ -177,11 +177,11 @@ def staff(request):
 
             else:
                 messages.error(
-                    request, 'Not staff member !!', extra_tags='log')
+                    request, 'Қызметкер емес', extra_tags='log')
                 return redirect('/staff_login')
 
         else:
-            messages.error(request, 'Invalid credentials !!', extra_tags='log')
+            messages.error(request, 'Логин немесе құпия сөз қате', extra_tags='log')
             return redirect('/staff_login')
 
 
@@ -203,7 +203,7 @@ def update_status(request, typ, rent_id):
             rent.is_returned = True
             rent.return_date = date.today()
         else:
-            messages.error(request, 'Return is not requested !!')
+            messages.error(request, 'Кітапті қайтару қажет емес')
             return redirect("/status")
 
     else:
@@ -222,7 +222,7 @@ def search_order(request):
     try:
         order_id = request.GET['order_id']
     except:
-        messages.error(request, 'No record found !!')
+        messages.error(request, 'Жазба табылмады')
         return render(request, 'status.html')
     
     rent_objs = Rent.objects.filter(order_id=order_id)
@@ -231,5 +231,5 @@ def search_order(request):
         return render(request, 'status.html', {'rents': rent_objs})
 
     else:
-        messages.error(request, 'No record found !!')
+        messages.error(request, 'Жазба табылмады')
         return render(request, 'status.html')
